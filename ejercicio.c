@@ -51,7 +51,6 @@ void obtencionDatos(struct producto *ptr2)
     printf("\n");
     puts("Ingrese la cantidad del producto:");
     scanf("%d", &ptr2->cantidad);
-    getchar();
 };
 // funcion que mostraría los productos
 
@@ -60,7 +59,7 @@ void mostrarProductos(struct producto *ptr2, int numeroProducto)
     for (int i = 0; i < numeroProducto; i++)
     {
         puts("Datos del Producto:");
-        printf("Codig: %d\tNombre: %s\tDescripcion %s\tCantidad: %d", ptr2[i].codigo, ptr2[i].nombreProducto, ptr2[i].descrProducto, ptr2[i].cantidad);
+        printf("Codig: %s\tNombre: %s\tDescripcion %s\tCantidad: %d", ptr2[i].codigo, ptr2[i].nombreProducto, ptr2[i].descrProducto, ptr2[i].cantidad);
         printf("\n");
     }
 }
@@ -98,13 +97,11 @@ int main(int argc, char const *argv[])
         return 1;
     }
 
-
     // Escribir en el archivo mediante fprintf
     for (int i = 0; i < numeroProducto; i++)
     {
-        fprintf(ptr, "%s\t|,%s\t|,%s\t|,%d\t|\n", MisProductos[i].codigo, MisProductos[i].nombreProducto, MisProductos[i].descrProducto, MisProductos[i].cantidad);
+        fprintf(ptr, "%s\t|%s\t|%s\t|%d\t|\n", MisProductos[i].codigo, MisProductos[i].nombreProducto, MisProductos[i].descrProducto, MisProductos[i].cantidad);
     }
-
 
     // Cerrar el archivo
     if (fclose(ptr))
@@ -121,7 +118,6 @@ int main(int argc, char const *argv[])
     ptr = fopen(archivo, "r");
     fread(&MisProductos, sizeof(struct producto) * numeroProducto, 1, ptr);
     fclose(ptr);
-
 
     return 0;
 }
